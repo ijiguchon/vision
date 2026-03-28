@@ -90,6 +90,48 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   letter-spacing: 0.5px;
 }
 
+/* ══════════════════════════════════════
+   LANGUAGE TOGGLE (언어 전환)
+══════════════════════════════════════ */
+.lang-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  gap: 8px;
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px 12px;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 162, 39, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lang-btn.active {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--teal-m), var(--gold));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 768px) {
   .home-btn {
     width: 56px;
@@ -102,6 +144,15 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   }
   .home-btn-text {
     font-size: 9px;
+  }
+  .lang-toggle {
+    top: 16px;
+    right: 16px;
+    padding: 6px 10px;
+  }
+  .lang-btn {
+    font-size: 12px;
+    padding: 5px 12px;
   }
 }
 
@@ -980,6 +1031,14 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <body>
 
 <!-- ══════════════════════════════════════
+     LANGUAGE TOGGLE (언어 전환)
+══════════════════════════════════════ -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="changeLanguage('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn" onclick="changeLanguage('en')" id="btn-en">English</button>
+</div>
+
+<!-- ══════════════════════════════════════
      § 1  HERO — 비전 선언문
 ══════════════════════════════════════ -->
 <div class="hero">
@@ -1375,16 +1434,16 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 
     <div style="margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:700px;margin-left:auto;margin-right:auto;" class="a5">
       <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">삶공부</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">제자를 만들어 가는<br>훈련 시스템</div>
-      </div>
-      <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
         <div style="font-size:11px;font-weight:700;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목장</div>
         <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">삶을 나누는<br>선교 공동체</div>
       </div>
       <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">삶공부</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">제자를 만들어 가는<br>훈련 공동체</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
         <div style="font-size:11px;font-weight:700;color:#7ec8f5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목자</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">파송 받은<br>선교사</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">파송 받은<br>평신도 선교사</div>
       </div>
     </div>
   </div>
@@ -1434,12 +1493,644 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 </button>
 
 <script>
-// 홈 버튼 및 섹션 링크 기능
+// 완전한 이중언어 번역 데이터 (다음세대를 위해)
+const translations = {
+  ko: {
+    // === 히어로 섹션 ===
+    churchName: '시애틀<em>지구촌</em>교회',
+    churchNameEn: 'Global Mission Church of Greater Seattle',
+    eyebrow: 'Vision Declaration · 시애틀지구촌교회',
+    visionLabel: '비전 선언문 · Vision Statement',
+    visionKo: '<span class="loc">시애틀에서 지구촌 땅 끝까지—</span><br>잃어버린 영혼을 <span class="verb1">찾아,</span><br>제자를 <span class="verb2">만들어</span> <span class="verb3">파송한다.</span>',
+    visionEn: '"From Seattle to the Ends of the Earth—<br><strong>Seek the Lost, Make Disciples, Send Them Out.</strong>"',
+    visionTag: 'One Soul, One Home at a Time.',
+    scrollText: '아래로',
+    
+    // === 성경 배지 ===
+    badge1: '창 12:1~3 — 부르심',
+    badge2: '마 22:37~39 — 이중계명',
+    badge3: '마 28:18~20 — 대위임령 · 침례',
+    badge4: '사 40:31 — 독수리',
+    badge5: '창 13:14~18 — 비전 지도',
+    
+    // === 부르심 섹션 ===
+    chip1: 'Biblical Foundation · 성경적 근거',
+    sec1Title: '하나님이 <em>먼저</em> 부르셨습니다',
+    sec1Sub: '이 비전은 우리가 만든 전략이 아닙니다. 창세기 12장에서 하나님이 먼저 아브람을 찾아오신 것처럼, 하나님이 주도하시고 우리를 부르셔서 사용하시는 이야기입니다. 비전 선언문의 세 동사 — 찾아, 만들어, 파송한다 — 는 모두 하나님이 먼저 하신 일의 반영입니다.',
+    
+    // 타임라인 1
+    tl1Ref: '창세기 12:1~3 — 부르심 (Divine Initiative)',
+    tl1Title: '하나님이 먼저 아브람을 찾아오셨다',
+    tl1Verse: '"주께서 아브람에게 말씀하셨다. \'너는 네 고향과 네 친척과 네 아버지의 집을 떠나서, 내가 네게 보여 줄 땅으로 가거라. 내가 너로 큰 민족을 이루고, 네게 복을 주어, 네 이름을 떨치게 하겠다. 너는 복의 근원이 될 것이다.\'"',
+    tl1Meaning: '아브람이 먼저 찾은 것이 아닙니다. <strong>하나님이 먼저 찾아오셨습니다.</strong> 우리의 비전도 마찬가지입니다. 시애틀지구촌교회가 기획한 프로그램이 아니라, 하나님이 이 교회를 시애틀로 부르신 부르심의 응답입니다.',
+    
+    // 타임라인 2
+    tl2Ref: '창세기 13:14~18 — 비전 (Revealed Vision)',
+    tl2Title: '동서남북 — 하나님이 보여 주신 땅',
+    tl2Verse: '"롯이 아브람을 떠난 뒤에, 주께서 아브람에게 말씀하셨다. \'눈을 들어서, 네가 있는 곳에서 동서남북을 바라보아라. 네가 보는 이 모든 땅을, 나는 너와 네 자손에게 영원히 주겠다. 나는 네 자손을 땅의 티끌처럼 셀 수 없이 많게 하겠다. 이제 일어나서, 이 땅을 이리저리 돌아다니며 살펴보아라. 내가 이 땅을 너에게 주겠다.\' 아브람은 헤브론으로 이사하여, 마므레의 상수리나무 숲 근처에 자리를 잡고 살면서, 거기에서 주께 제단을 쌓았다."',
+    tl2Meaning: '동서남북은 아브람의 계획이 아니라 <strong>하나님이 보여 주신 비전</strong>입니다. "네가 있는 곳에서" — 시애틀에서 시작합니다. 헤브론에서 제단을 쌓은 아브람처럼, Hebron은 매일 하나님께 제단을 쌓는 자리입니다. Genesis 1314 — 이것이 우리 교회의 DNA입니다.',
+    
+    // 타임라인 3
+    tl3Ref: '마태복음 22:37~39 — 이중계명 (Great Commandment)',
+    tl3Title: '하나님 사랑 × 이웃 사랑 — 십자가의 두 축',
+    tl3Verse: '"예수께서 그에게 말씀하셨다. \'네 마음을 다하고, 네 목숨을 다하고, 네 뜻을 다하여, 주 너의 하나님을 사랑하여라. 이것이 가장 중요하고 으뜸 되는 계명이다. 둘째 계명도 이것과 같은데, 네 이웃을 네 몸과 같이 사랑하여라.\'"',
+    tl3Meaning: '<strong>수직 — 하나님 사랑:</strong> Hebron(가정) 앱. 말씀 묵상, 침묵 기도, 경청 노트. 가정에서 매일 제단을 쌓는 삶.<br><strong>수평 — 이웃 사랑:</strong> GMC(연합교회). 목장, 삶공부, 파송. 목장이 바로 수직과 수평이 만나는 십자가의 교차점입니다.',
+    
+    // 타임라인 4
+    tl4Ref: '마태복음 28:18~20 — 대위임령 (Great Commission)',
+    tl4Title: '모든 민족을 제자로 — 시애틀에서 땅 끝까지',
+    tl4Verse: '"예수께서 다가와서, 그들에게 말씀하셨다. \'나는 하늘과 땅의 모든 권세를 받았다. 그러므로 너희는 가서, 모든 민족을 제자로 삼아서, 아버지와 아들과 성령의 이름으로 침례를 베풀고, 내가 너희에게 명령한 모든 것을 지키도록 가르쳐라. 보아라, 내가 세상 끝날까지 항상 너희와 함께 있겠다.\'"',
+    tl4Meaning: '<strong>모든 권세</strong>가 예수님께 있습니다 — 우리의 능력이 아닙니다. <strong>가서</strong> — 시애틀에서 출발합니다. <strong>제자로 삼아</strong> — 원어 μαθητεύσατε(마테튜사테)는 지속적으로 함께 만들어 가는 과정입니다. <strong>침례(βαπτίζω, 밥티조)</strong> — 원어의 의미는 "물속에 완전히 잠기다"로, 성경 본래의 의미와 정확히 일치합니다. <strong>항상 함께</strong> — 파송은 홀로 보냄이 아닙니다. 예수님이 친히 먼저 가십니다. 우리의 순종은 가시는 예수님을 함께 따라가는 것, 동행입니다. <strong>이것은 특권입니다.</strong> "지구촌(Global Mission)"이라는 교회 이름 자체가 이 특권을 받아들인 응답입니다.',
+    
+    // === 십자가 섹션 ===
+    chip2: 'The Cross Structure · 십자가 구조',
+    sec2Title: '비전의 <em style="color:var(--teal-m);">십자가 구조</em>',
+    sec2Sub: '하나님 사랑(수직)과 이웃 사랑(수평)이 만나는 십자가 위에 이 비전이 세워집니다. 목장은 그 교차점입니다.',
+    crossQuote: '"Hebron(가정)에서 하나님께 제단을 쌓고 (수직),<br>목장에서 이웃과 삶을 나누며 (교차점),<br>시애틀에서 지구촌 땅 끝까지 제자를 만들어 파송한다 (수평)."',
+    
+    // 십자가 카드
+    crossTop: '하나님 사랑',
+    crossTopSub: '수직 · 말씀 · 기도<br>매일 제단을 쌓는 삶',
+    crossTopRef: '마 22:37',
+    crossLeft: 'Hebron <span style="font-size:.75em;color:rgba(255,255,255,.5);font-weight:400;">(가정)</span>',
+    crossLeftSub: '소그룹 · 가정+교회<br>개인 · VIP · 목장',
+    crossLeftRef: '창 13:14~18',
+    crossCenter: '목장',
+    crossRight: 'GMC <span style="font-size:.75em;opacity:.7;">(연합교회)</span>',
+    crossRightSub: '대그룹 · 목장연합교회<br>예배 · 삶공부 · 파송',
+    crossRightRef: '마 28:18~20',
+    crossBottom: '이웃 사랑',
+    crossBottomSub: '수평 · 전도 · 파송<br>시애틀에서 땅 끝까지',
+    crossBottomRef: '마 22:39',
+    // === 세 동사 섹션 ===
+    chip3: 'Three Verbs · 세 동사',
+    sec3Title: '찾아, <em>만들어,</em> 파송한다',
+    sec3Sub: '비전 선언문의 세 동사는 하나님이 먼저 하신 일의 반영입니다. 하나님이 우리를 먼저 찾으셨고, 제자로 만들어 가시며, 세상으로 파송하십니다.',
+    
+    verb1Title: '찾아',
+    verb1En: 'Seek the Lost',
+    verb1Desc: '하나님이 먼저 아브람을 찾아오셨듯, 우리는 <strong>잃어버린 영혼을 먼저 찾아갑니다.</strong> 기다리지 않습니다. VIP 리스트를 작성하고, 기도하고, 찾아가 삶을 나눕니다. 전도는 프로그램이 아니라 찾아가는 사랑입니다.',
+    verb1Verse: '"하나님이 세상을 이처럼 사랑하셔서, 독생자를 주셨으니, 이는 그를 믿는 사람마다 멸망하지 않고 영생을 얻게 하려는 것이다." (요한복음 3:16)',
+    
+    verb2Title: '만들어',
+    verb2En: 'Make Disciples',
+    verb2Desc: '"제자로 삼아(μαθητεύσατε)" — 원어의 의미는 <strong>지속적으로 함께 만들어 가는 과정</strong>입니다. 단번에 완성되지 않습니다. 삶공부를 통해, 목장에서, 1대1로 함께 성장합니다. 헤브론에서 제단을 쌓듯 매일 훈련됩니다.',
+    verb2Verse: '"내가 너희에게 명령한 모든 것을 지키도록 가르쳐라." (마태복음 28:20)',
+    
+    verb3Title: '파송한다',
+    verb3En: 'Send Them Out',
+    verb3Desc: '동서남북 — 시애틀에서 지구촌 땅 끝까지. <strong>목장 하나가 동네 하나, 한 성도가 직장과 학교와 이웃을 선교지로 삼습니다.</strong> 파송은 홀로 보냄이 아닙니다. "내가 세상 끝날까지 너희와 함께 있으리라" — 예수님이 함께 가십니다.',
+    verb3Verse: '"눈을 들어서, 네가 있는 곳에서 동서남북을 바라보아라." (창세기 13:14)',
+    
+    // === 독수리 섹션 ===
+    chip4: 'Two Wings of an Eagle · 독수리의 두 날개',
+    sec4Title: '독수리처럼 <em>날아오릅니다</em>',
+    sec4Sub: '독수리는 두 날개의 균형으로 높이 솟구칩니다. 한쪽 날개만으로는 맴돌다 추락합니다. 소그룹 Hebron(가정+교회)과 대그룹 GMC(연합교회), 두 날개가 함께 움직일 때 교회는 시애틀에서 지구촌 땅 끝까지 날아오릅니다.',
+    
+    eagleVerseRef: '이사야 40:31',
+    eagleVerse: '"오직 주를 앙망하는 사람은 새 힘을 얻으리니,<br><strong style="color:var(--gold-l);">독수리가 날개를 치며 솟아오르는 것같이</strong><br>달려가도 피곤하지 않고, 걸어가도 지치지 않으리라."',
+    eagleKey: '주를 앙망할 때 — 독수리처럼 솟아오른다',
+    
+    eagleLeftLabel: '소그룹 · 왼쪽 날개 — Hebron(가정+교회)',
+    eagleLeftDir: '↑ 수직 — 하나님께 올라가는 힘',
+    eagleLeftApp: 'Hebron',
+    eagleLeftSub: 'Hebron(가정) · My Altar of Union with God · Genesis 13:14',
+    eagleLeftVerse: '"아브람은 헤브론으로 이사하여, 마므레의 상수리나무 숲 근처에 자리를 잡고 살면서, 거기에서 주께 제단을 쌓았다." — 창세기 13:18',
+    eagleLeftFeature1: '📖 매일 말씀 묵상 (Word Meditation)',
+    eagleLeftFeature2: '🤫 침묵 기도 · 경청 노트',
+    eagleLeftFeature3: '🙏 VIP 전도 기도 리스트',
+    eagleLeftFeature4: '👥 목장 나눔 · 21일 경청 훈련',
+    eagleLeftTagline: '소그룹 날개 — Hebron(가정+교회), 가정이 곧 교회, 매일 제단을 쌓는다 · One Home at a Time',
+    
+    eagleRightLabel: '대그룹 · 오른쪽 날개 — GMC(연합교회)',
+    eagleRightDir: '→ 수평 — 세상으로 나아가는 힘',
+    eagleRightApp: 'GMC',
+    eagleRightApp2: '(연합교회)',
+    eagleRightSub: 'GMC(연합교회) · United Church Mission · Matthew 28:18-20',
+    eagleRightVerse: '"그러므로 너희는 가서, 모든 민족을 제자로 삼아서... 내가 세상 끝날까지 항상 너희와 함께 있겠다." — 마태복음 28:19-20',
+    eagleRightFeature1: '⛪ 주일 연합 예배',
+    eagleRightFeature2: '🏠 목장 운영 · 목자·목원 관리',
+    eagleRightFeature3: '📖 삶공부 일정 · 등록',
+    eagleRightFeature4: '🌍 선교·전도 현황 · 교회 공지',
+    eagleRightTagline: '대그룹 날개 — GMC(연합교회), 목장들의 연합, 시애틀에서 지구촌 땅 끝까지',
+    
+    eagleBodyLabel: '독수리의<br>몸통',
+    eagleBodySub: 'balanced center',
+    eagleBodySub2: '수직 × 수평<br>교차점',
+    eagleBodySub3: 'One Home<br>at a Time',
+    
+    pillar1Num: '비전의 첫째 기둥',
+    pillar1: '창 13:18 · 목장 · 가정+교회',
+    pillar1Key: '동서남북을 바라보라<br><em style="color:var(--teal);font-style:normal;font-weight:600;">Genesis 1314 비전</em>',
+    pillar2Num: '비전의 둘째 기둥',
+    pillar2: '삶공부 · 제자훈련 시스템',
+    pillar2Key: '독수리처럼 날아오르라<br><em style="color:var(--gold);font-style:normal;font-weight:600;">주를 앙망하는 힘</em>',
+    pillar3Num: '비전의 셋째 기둥',
+    pillar3: '마 28:19 · 목자 · 선교사',
+    pillar3Key: '모든 민족을 제자로<br><em style="color:var(--blue);font-style:normal;font-weight:600;">대위임령 · 침례</em>',
+    
+    // === 비전 지도 섹션 ===
+    chip5: 'Vision Map · 비전 지도',
+    sec5Title: '시애틀에서 <em style="color:var(--teal-m);">지구촌 땅 끝까지</em>',
+    sec5Sub: '"너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀이 출발점입니다. "지구촌(Global Mission)"이 목적지입니다.',
+    
+    mapNode1Title: 'Hebron(가정)',
+    mapNode1Sub: '한 가정, 한 이웃<br>One Home at a Time',
+    mapNode1Ref: '창 13:18 · 목장 · 가정+교회',
+    
+    mapNode2Title: '시애틀',
+    mapNode2Sub: '동서남북<br>이 도시를 바라보라',
+    mapNode2Ref: '창 13:14 · GMC(연합교회)',
+    
+    mapNode3Title: '지구촌 땅 끝',
+    mapNode3Sub: '모든 민족에게<br>하나님 나라 확장',
+    mapNode3Ref: '마 28:19 · Global Mission',
+    
+    mapArrow1: '확장',
+    mapArrow2: '파송',
+    
+    mapPillar1Title: '목장',
+    mapPillar1Sub: '삶을 나누는<br>선교 공동체',
+    mapPillar2Title: '삶공부',
+    mapPillar2Sub: '제자를 만들어 가는<br>훈련 공동체',
+    mapPillar3Title: '목자',
+    mapPillar3Sub: '파송 받은<br>평신도 선교사',
+    
+    // === 클로징 ===
+    closingVerse: '"보아라, 내가 세상 끝날까지<br>항상 너희와 함께 있겠다."',
+    closingVerseRef: '마태복음 28:20',
+    closingVision: '<span class="ko-loc">시애틀에서 지구촌 땅 끝까지—</span><br>잃어버린 영혼을 찾아,<br>제자를 <span class="ko-verb">만들어</span> 파송한다.',
+    closingEn: '"From Seattle to the Ends of the Earth—<br>Seek the Lost, Make Disciples, Send Them Out."',
+    closingTag: 'One Soul, One Home at a Time.',
+    
+    footerChurch: '시애틀지구촌교회 · Global Mission Church of Greater Seattle',
+    footerRefs: '창세기 12:1~3 · 13:14~18 · 이사야 40:31 · 마태복음 22:37~39 · 28:18~20',
+    footerTag: 'Expanding the Kingdom, One Home at a Time.',
+    footerNote: '※ 성경 본문은 새번역을 사용하며, 침례(βαπτίζω)는 "물속에 완전히 잠기다"는 성경 본래의 의미를 반영합니다.'
+  },
+  
+  en: {
+    // === HERO SECTION ===
+    churchName: 'Global Mission Church<br><em>of Greater Seattle</em>',
+    churchNameEn: 'Global Mission Church of Greater Seattle',
+    eyebrow: 'Vision Declaration · Global Mission Church',
+    visionLabel: 'Vision Statement',
+    visionKo: '<span class="loc">From Seattle to the Ends of the Earth—</span><br><strong>Seek the Lost,<br>Make Disciples, Send Them Out.</strong>',
+    visionEn: '"From Seattle to the Ends of the Earth—<br><strong>Seek the Lost, Make Disciples, Send Them Out.</strong>"',
+    visionTag: 'One Soul, One Home at a Time.',
+    scrollText: 'Scroll Down',
+    
+    // === SCRIPTURE BADGES ===
+    badge1: 'Gen 12:1-3 — The Call',
+    badge2: 'Matt 22:37-39 — Two Commandments',
+    badge3: 'Matt 28:18-20 — Great Commission',
+    badge4: 'Isa 40:31 — Eagle\'s Wings',
+    badge5: 'Gen 13:14-18 — Vision Map',
+    
+    // === CALLING SECTION ===
+    chip1: 'Biblical Foundation',
+    sec1Title: 'God <em>Called Us First</em>',
+    sec1Sub: 'This vision is not our strategy. Just as God first came to Abram in Genesis 12, this is God\'s initiative—calling and using us. The three verbs in our vision statement—Seek, Make, Send—all reflect what God did first.',
+    
+    // Timeline 1
+    tl1Ref: 'Genesis 12:1-3 — The Call (Divine Initiative)',
+    tl1Title: 'God First Came to Abram',
+    tl1Verse: '"The LORD had said to Abram, \'Go from your country, your people and your father\'s household to the land I will show you. I will make you into a great nation, and I will bless you; I will make your name great, and you will be a blessing.\'" (NIV)',
+    tl1Meaning: 'Abram did not seek first. <strong>God came to him first.</strong> Our vision is the same. This is not a program planned by Global Mission Church, but a response to God\'s call bringing this church to Seattle.',
+    
+    // Timeline 2
+    tl2Ref: 'Genesis 13:14-18 — The Vision (Revealed Vision)',
+    tl2Title: 'North, South, East, West — The Land God Showed',
+    tl2Verse: '"The LORD said to Abram after Lot had parted from him, \'Look around from where you are, to the north and south, to the east and west. All the land that you see I will give to you and your offspring forever. I will make your offspring like the dust of the earth... Go, walk through the length and breadth of the land, for I am giving it to you.\' So Abram went to live near the great trees of Mamre at Hebron, where he pitched his tents. There he built an altar to the LORD." (NIV)',
+    tl2Meaning: 'North, South, East, West—this is not Abram\'s plan but <strong>the vision God revealed</strong>. "From where you are"—we start from Seattle. Like Abram who built an altar at Hebron, Hebron is where we build an altar to God daily. Genesis 13:14—this is our church\'s DNA.',
+    
+    // Timeline 3
+    tl3Ref: 'Matthew 22:37-39 — The Great Commandment',
+    tl3Title: 'Love for God × Love for Neighbor — Two Axes of the Cross',
+    tl3Verse: '"Jesus replied: \'Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself.\'" (NIV)',
+    tl3Meaning: '<strong>Vertical—Love for God:</strong> Hebron(Home) app. Scripture meditation, silent prayer, listening notes. Building an altar to God daily at home.<br><strong>Horizontal—Love for Neighbor:</strong> GMC(United Church). Mokjang, Life Study, Sending. Mokjang is the intersection where vertical and horizontal meet on the cross.',
+    
+    // Timeline 4
+    tl4Ref: 'Matthew 28:18-20 — The Great Commission',
+    tl4Title: 'Make Disciples of All Nations — From Seattle to the Ends',
+    tl4Verse: '"Then Jesus came to them and said, \'All authority in heaven and on earth has been given to me. Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age.\'" (NIV)',
+    tl4Meaning: '<strong>All authority</strong> is Jesus\'—not our ability. <strong>Go</strong>—we depart from Seattle. <strong>Make disciples</strong>—the original Greek μαθητεύσατε (mathēteusate) means an ongoing process of making together. <strong>Baptizing (βαπτίζω, baptizō)</strong>—the original meaning is "to immerse completely in water," precisely matching Scripture\'s original intent. <strong>Always with you</strong>—sending is not alone. Jesus goes first. Our obedience is walking together with Jesus. <strong>This is a privilege.</strong> The church name "Global Mission" itself is our response to accepting this privilege.',
+    
+    // === CROSS SECTION ===
+    chip2: 'The Cross Structure',
+    sec2Title: 'The <em style="color:var(--teal-m);">Cross Structure</em> of Our Vision',
+    sec2Sub: 'This vision is built on the cross where love for God (vertical) and love for neighbor (horizontal) meet. The Mokjang is the intersection.',
+    crossQuote: '"Building an altar to God at Hebron(Home) (vertical),<br>Sharing life with neighbors in Mokjang (intersection),<br>Making and sending disciples from Seattle to the ends of the earth (horizontal)."',
+    
+    // Cross Cards
+    crossTop: 'Love for God',
+    crossTopSub: 'Vertical · Scripture · Prayer<br>Building an Altar Daily',
+    crossTopRef: 'Matt 22:37',
+    crossLeft: 'Hebron <span style="font-size:.75em;color:rgba(255,255,255,.5);font-weight:400;">(Home)</span>',
+    crossLeftSub: 'Small Group · House+Church<br>Personal · VIP · Mokjang',
+    crossLeftRef: 'Gen 13:14-18',
+    crossCenter: 'Mokjang',
+    crossRight: 'GMC <span style="font-size:.75em;opacity:.7;">(United Church)</span>',
+    crossRightSub: 'Large Group · United Church<br>Worship · Life Study · Sending',
+    crossRightRef: 'Matt 28:18-20',
+    crossBottom: 'Love for Neighbor',
+    crossBottomSub: 'Horizontal · Evangelism · Sending<br>From Seattle to the Ends',
+    crossBottomRef: 'Matt 22:39',
+    // === THREE VERBS SECTION ===
+    chip3: 'Three Verbs',
+    sec3Title: 'Seek, <em>Make,</em> Send',
+    sec3Sub: 'The three verbs in our vision statement reflect what God did first. God sought us first, makes us disciples, and sends us into the world.',
+    
+    verb1Title: 'Seek',
+    verb1En: 'Seek the Lost',
+    verb1Desc: 'Just as God first came to Abram, we <strong>seek the lost first.</strong> We don\'t wait. We make VIP lists, pray, and share life with them. Evangelism is not a program but the love of seeking.',
+    verb1Verse: '"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." (John 3:16, NIV)',
+    
+    verb2Title: 'Make',
+    verb2En: 'Make Disciples',
+    verb2Desc: '"Make disciples (μαθητεύσατε)"—the original meaning is <strong>an ongoing process of making together</strong>. It\'s not completed at once. Through Life Study, in Mokjang, one-on-one, we grow together. Like building an altar at Hebron, we train daily.',
+    verb2Verse: '"...teaching them to obey everything I have commanded you." (Matthew 28:20, NIV)',
+    
+    verb3Title: 'Send',
+    verb3En: 'Send Them Out',
+    verb3Desc: 'North, South, East, West—from Seattle to the ends of the earth. <strong>One Mokjang becomes one neighborhood, one believer makes their workplace, school, and community a mission field.</strong> Sending is not alone. "I am with you always, to the end of the age"—Jesus goes with us.',
+    verb3Verse: '"Look around from where you are, to the north and south, to the east and west." (Genesis 13:14, NIV)',
+    
+    // === EAGLE SECTION ===
+    chip4: 'Two Wings of an Eagle',
+    sec4Title: 'Soaring Like an <em>Eagle</em>',
+    sec4Sub: 'An eagle soars high through the balance of two wings. With only one wing, it circles and falls. When both small groups (Hebron/House Church) and large groups (GMC/United Church) move together, the church flies from Seattle to the ends of the earth.',
+    
+    eagleVerseRef: 'Isaiah 40:31',
+    eagleVerse: '"...but those who hope in the LORD will renew their strength.<br><strong style="color:var(--gold-l);">They will soar on wings like eagles;</strong><br>they will run and not grow weary, they will walk and not be faint." (NIV)',
+    eagleKey: 'Those who hope in the LORD — soar like eagles',
+    
+    eagleLeftLabel: 'Small Group · Left Wing — Hebron(House+Church)',
+    eagleLeftDir: '↑ Vertical — Power Rising to God',
+    eagleLeftApp: 'Hebron',
+    eagleLeftSub: 'Hebron(Home) · My Altar of Union with God · Genesis 13:14',
+    eagleLeftVerse: '"So Abram went to live near the great trees of Mamre at Hebron, where he pitched his tents. There he built an altar to the LORD." — Genesis 13:18 (NIV)',
+    eagleLeftFeature1: '📖 Daily Scripture Meditation',
+    eagleLeftFeature2: '🤫 Silent Prayer · Listening Notes',
+    eagleLeftFeature3: '🙏 VIP Evangelism Prayer List',
+    eagleLeftFeature4: '👥 Mokjang Sharing · 21-Day Listening Training',
+    eagleLeftTagline: 'Small Group Wing — Hebron(House+Church), Home is Church, Building an Altar Daily · One Home at a Time',
+    
+    eagleRightLabel: 'Large Group · Right Wing — GMC(United Church)',
+    eagleRightDir: '→ Horizontal — Power Going into the World',
+    eagleRightApp: 'GMC',
+    eagleRightApp2: '(United Church)',
+    eagleRightSub: 'GMC(United Church) · United Church Mission · Matthew 28:18-20',
+    eagleRightVerse: '"Therefore go and make disciples of all nations... And surely I am with you always, to the very end of the age." — Matthew 28:19-20 (NIV)',
+    eagleRightFeature1: '⛪ Sunday United Worship',
+    eagleRightFeature2: '🏠 Mokjang Operation · Shepherd Management',
+    eagleRightFeature3: '📖 Life Study Schedule · Registration',
+    eagleRightFeature4: '🌍 Mission Status · Church Announcements',
+    eagleRightTagline: 'Large Group Wing — GMC(United Church), Union of Mokjangs, From Seattle to the Ends of the Earth',
+    
+    eagleBodyLabel: 'Eagle\'s<br>Body',
+    eagleBodySub: 'balanced center',
+    eagleBodySub2: 'Vertical × Horizontal<br>Intersection',
+    eagleBodySub3: 'One Home<br>at a Time',
+    
+    pillar1Num: 'First Pillar of Vision',
+    pillar1: 'Gen 13:18 · Mokjang · House+Church',
+    pillar1Key: 'Look North, South, East, West<br><em style="color:var(--teal);font-style:normal;font-weight:600;">Genesis 1314 Vision</em>',
+    pillar2Num: 'Second Pillar of Vision',
+    pillar2: 'Life Study · Discipleship System',
+    pillar2Key: 'Soar Like an Eagle<br><em style="color:var(--gold);font-style:normal;font-weight:600;">Power of Hoping in the LORD</em>',
+    pillar3Num: 'Third Pillar of Vision',
+    pillar3: 'Matt 28:19 · Shepherd · Missionary',
+    pillar3Key: 'Make Disciples of All Nations<br><em style="color:var(--blue);font-style:normal;font-weight:600;">Great Commission · Baptism</em>',
+    
+    // === VISION MAP SECTION ===
+    chip5: 'Vision Map',
+    sec5Title: 'From Seattle to <em style="color:var(--teal-m);">the Ends of the Earth</em>',
+    sec5Sub: '"Look from where you are, to the north and south, to the east and west" (Gen 13:14) — Seattle is the starting point. "Global Mission" is the destination.',
+    
+    mapNode1Title: 'Hebron (Home)',
+    mapNode1Sub: 'One Home, One Neighbor<br>at a Time',
+    mapNode1Ref: 'Gen 13:18 · Mokjang · House+Church',
+    
+    mapNode2Title: 'Seattle',
+    mapNode2Sub: 'North, South, East, West<br>Look at This City',
+    mapNode2Ref: 'Gen 13:14 · GMC(United Church)',
+    
+    mapNode3Title: 'Ends of the Earth',
+    mapNode3Sub: 'To All Nations<br>Expanding God\'s Kingdom',
+    mapNode3Ref: 'Matt 28:19 · Global Mission',
+    
+    mapArrow1: 'Expand',
+    mapArrow2: 'Send',
+    
+    mapPillar1Title: 'Mokjang',
+    mapPillar1Sub: 'Missional Community<br>Sharing Life',
+    mapPillar2Title: 'Life Study',
+    mapPillar2Sub: 'Discipleship<br>Training Community',
+    mapPillar3Title: 'Shepherd',
+    mapPillar3Sub: 'Sent-Out<br>Lay Missionary',
+    
+    // === CLOSING ===
+    closingVerse: '"And surely I am with you always,<br>to the very end of the age."',
+    closingVerseRef: 'Matthew 28:20',
+    closingVision: '<span class="ko-loc">From Seattle to the Ends of the Earth—</span><br>Seek the Lost,<br><span class="ko-verb">Make Disciples,</span> Send Them Out.',
+    closingEn: '"From Seattle to the Ends of the Earth—<br>Seek the Lost, Make Disciples, Send Them Out."',
+    closingTag: 'One Soul, One Home at a Time.',
+    
+    footerChurch: 'Global Mission Church of Greater Seattle',
+    footerRefs: 'Genesis 12:1-3 · 13:14-18 · Isaiah 40:31 · Matthew 22:37-39 · 28:18-20',
+    footerTag: 'Expanding the Kingdom, One Home at a Time.',
+    footerNote: '※ Scripture from the New International Version (NIV). Baptism (βαπτίζω) means "to immerse completely," reflecting the original biblical meaning.'
+  }
+};
+
+// 언어 전환 함수
+let currentLanguage = 'ko';
+
+function changeLanguage(lang) {
+  const koBtn = document.getElementById('btn-ko');
+  const enBtn = document.getElementById('btn-en');
+  
+  if (lang === 'ko') {
+    koBtn.classList.add('active');
+    enBtn.classList.remove('active');
+    currentLanguage = 'ko';
+  } else if (lang === 'en') {
+    enBtn.classList.add('active');
+    koBtn.classList.remove('active');
+    currentLanguage = 'en';
+  }
+  
+  updatePageText(lang);
+}
+
+function updatePageText(lang) {
+  const t = translations[lang];
+  
+  // === HERO ===
+  safeUpdate('.hero-eyebrow', t.eyebrow);
+  safeUpdate('.hero-church-name', t.churchName, true);
+  safeUpdate('.hero-church-en', t.churchNameEn);
+  safeUpdate('.decl-label', t.visionLabel);
+  safeUpdate('.decl-ko', t.visionKo, true);
+  safeUpdate('.decl-en', t.visionEn, true);
+  safeUpdate('.decl-tagline', t.visionTag);
+  safeUpdate('.scroll-cue span', t.scrollText);
+  
+  // === BADGES ===
+  const badges = document.querySelectorAll('.s-badge');
+  if (badges[0]) badges[0].textContent = t.badge1;
+  if (badges[1]) badges[1].textContent = t.badge2;
+  if (badges[2]) badges[2].textContent = t.badge3;
+  if (badges[3]) badges[3].textContent = t.badge4;
+  if (badges[4]) badges[4].textContent = t.badge5;
+  
+  // === SECTION 1 - CALLING ===
+  const chips = document.querySelectorAll('.chip');
+  if (chips[0]) chips[0].textContent = t.chip1;
+  
+  const secTitles = document.querySelectorAll('.sec-title');
+  if (secTitles[0]) secTitles[0].innerHTML = t.sec1Title;
+  
+  const secSubs = document.querySelectorAll('.sec-sub');
+  if (secSubs[0]) secSubs[0].textContent = t.sec1Sub;
+  
+  // Timeline items
+  const tlRefs = document.querySelectorAll('.tl-ref');
+  if (tlRefs[0]) tlRefs[0].textContent = t.tl1Ref;
+  if (tlRefs[1]) tlRefs[1].textContent = t.tl2Ref;
+  if (tlRefs[2]) tlRefs[2].textContent = t.tl3Ref;
+  if (tlRefs[3]) tlRefs[3].textContent = t.tl4Ref;
+  
+  const tlTitles = document.querySelectorAll('.tl-title');
+  if (tlTitles[0]) tlTitles[0].textContent = t.tl1Title;
+  if (tlTitles[1]) tlTitles[1].textContent = t.tl2Title;
+  if (tlTitles[2]) tlTitles[2].textContent = t.tl3Title;
+  if (tlTitles[3]) tlTitles[3].textContent = t.tl4Title;
+  
+  const tlVerses = document.querySelectorAll('.tl-verse');
+  if (tlVerses[0]) tlVerses[0].textContent = t.tl1Verse;
+  if (tlVerses[1]) tlVerses[1].textContent = t.tl2Verse;
+  if (tlVerses[2]) tlVerses[2].textContent = t.tl3Verse;
+  if (tlVerses[3]) tlVerses[3].textContent = t.tl4Verse;
+  
+  const tlMeanings = document.querySelectorAll('.tl-meaning');
+  if (tlMeanings[0]) tlMeanings[0].innerHTML = t.tl1Meaning;
+  if (tlMeanings[1]) tlMeanings[1].innerHTML = t.tl2Meaning;
+  if (tlMeanings[2]) tlMeanings[2].innerHTML = t.tl3Meaning;
+  if (tlMeanings[3]) tlMeanings[3].innerHTML = t.tl4Meaning;
+  
+  // === SECTION 2 - CROSS ===
+  if (chips[1]) chips[1].textContent = t.chip2;
+  const crossTitle = document.querySelector('.cross-section .sec-title');
+  if (crossTitle) crossTitle.innerHTML = t.sec2Title;
+  const crossSub = document.querySelector('.cross-section .sec-sub');
+  if (crossSub) crossSub.textContent = t.sec2Sub;
+  
+  // Cross cards
+  const ccLabels = document.querySelectorAll('.cc-label');
+  if (ccLabels[0]) ccLabels[0].textContent = t.crossTop;
+  if (ccLabels[1]) ccLabels[1].innerHTML = t.crossLeft;
+  if (ccLabels[2]) ccLabels[2].innerHTML = t.crossRight;
+  if (ccLabels[3]) ccLabels[3].textContent = t.crossBottom;
+  
+  const ccSubs = document.querySelectorAll('.cc-sub');
+  if (ccSubs[0]) ccSubs[0].innerHTML = t.crossTopSub;
+  if (ccSubs[1]) ccSubs[1].innerHTML = t.crossLeftSub;
+  if (ccSubs[2]) ccSubs[2].innerHTML = t.crossRightSub;
+  if (ccSubs[3]) ccSubs[3].innerHTML = t.crossBottomSub;
+  
+  const cLabel = document.querySelector('.c-label');
+  if (cLabel) cLabel.textContent = t.crossCenter;
+  
+  // Cross card references
+  const ccRefs = document.querySelectorAll('.cc-ref');
+  if (ccRefs[0]) ccRefs[0].textContent = t.crossTopRef;
+  if (ccRefs[1]) ccRefs[1].textContent = t.crossLeftRef;
+  if (ccRefs[2]) ccRefs[2].textContent = t.crossRightRef;
+  if (ccRefs[3]) ccRefs[3].textContent = t.crossBottomRef;
+  
+  // Cross quote
+  const crossQuoteEl = document.querySelector('.cross-section .a5 p');
+  if (crossQuoteEl) crossQuoteEl.innerHTML = t.crossQuote;
+  
+  // === SECTION 3 - THREE VERBS ===
+  if (chips[2]) chips[2].textContent = t.chip3;
+  if (secTitles[2]) secTitles[2].innerHTML = t.sec3Title;
+  if (secSubs[2]) secSubs[2].textContent = t.sec3Sub;
+  
+  const verbKrs = document.querySelectorAll('.verb-kr');
+  if (verbKrs[0]) verbKrs[0].textContent = t.verb1Title;
+  if (verbKrs[1]) verbKrs[1].textContent = t.verb2Title;
+  if (verbKrs[2]) verbKrs[2].textContent = t.verb3Title;
+  
+  const verbEns = document.querySelectorAll('.verb-en');
+  if (verbEns[0]) verbEns[0].textContent = t.verb1En;
+  if (verbEns[1]) verbEns[1].textContent = t.verb2En;
+  if (verbEns[2]) verbEns[2].textContent = t.verb3En;
+  
+  const verbDescs = document.querySelectorAll('.verb-desc');
+  if (verbDescs[0]) verbDescs[0].innerHTML = t.verb1Desc;
+  if (verbDescs[1]) verbDescs[1].innerHTML = t.verb2Desc;
+  if (verbDescs[2]) verbDescs[2].innerHTML = t.verb3Desc;
+  
+  const verbVerses = document.querySelectorAll('.verb-verse');
+  if (verbVerses[0]) verbVerses[0].textContent = t.verb1Verse;
+  if (verbVerses[1]) verbVerses[1].textContent = t.verb2Verse;
+  if (verbVerses[2]) verbVerses[2].textContent = t.verb3Verse;
+  
+  // === SECTION 4 - EAGLE ===
+  if (chips[3]) chips[3].textContent = t.chip4;
+  if (secTitles[3]) secTitles[3].innerHTML = t.sec4Title;
+  if (secSubs[3]) secSubs[3].textContent = t.sec4Sub;
+  
+  safeUpdate('.ev-ref', t.eagleVerseRef);
+  safeUpdate('.ev-text', t.eagleVerse, true);
+  safeUpdate('.ev-key', t.eagleKey);
+  
+  // Eagle wings
+  const ewLabels = document.querySelectorAll('.ew-label');
+  if (ewLabels[0]) ewLabels[0].textContent = t.eagleLeftLabel;
+  if (ewLabels[1]) ewLabels[1].textContent = t.eagleRightLabel;
+  
+  const ewDirs = document.querySelectorAll('.ew-direction');
+  if (ewDirs[0]) ewDirs[0].textContent = t.eagleLeftDir;
+  if (ewDirs[1]) ewDirs[1].textContent = t.eagleRightDir;
+  
+  const ewAppNames = document.querySelectorAll('.ew-app-name');
+  if (ewAppNames[0]) ewAppNames[0].textContent = t.eagleLeftApp;
+  if (ewAppNames[1]) ewAppNames[1].textContent = t.eagleRightApp;
+  
+  const ewAppSubs = document.querySelectorAll('.ew-app-sub');
+  if (ewAppSubs[0]) ewAppSubs[0].textContent = t.eagleLeftSub;
+  if (ewAppSubs[1]) ewAppSubs[1].textContent = t.eagleRightSub;
+  
+  const ewScriptures = document.querySelectorAll('.ew-scripture');
+  if (ewScriptures[0]) ewScriptures[0].textContent = t.eagleLeftVerse;
+  if (ewScriptures[1]) ewScriptures[1].textContent = t.eagleRightVerse;
+  
+  // Eagle features
+  const ewFeats = document.querySelectorAll('.ew-feat');
+  if (ewFeats[0]) ewFeats[0].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleLeftFeature1;
+  if (ewFeats[1]) ewFeats[1].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleLeftFeature2;
+  if (ewFeats[2]) ewFeats[2].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleLeftFeature3;
+  if (ewFeats[3]) ewFeats[3].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleLeftFeature4;
+  if (ewFeats[4]) ewFeats[4].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleRightFeature1;
+  if (ewFeats[5]) ewFeats[5].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleRightFeature2;
+  if (ewFeats[6]) ewFeats[6].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleRightFeature3;
+  if (ewFeats[7]) ewFeats[7].innerHTML = '<div class="ew-feat-dot"></div>' + t.eagleRightFeature4;
+  
+  // Eagle taglines
+  const ewTaglines = document.querySelectorAll('.ew-tagline');
+  if (ewTaglines[0]) ewTaglines[0].textContent = t.eagleLeftTagline;
+  if (ewTaglines[1]) ewTaglines[1].textContent = t.eagleRightTagline;
+  
+  // Eagle app2 (right wing)
+  const ewApp2 = document.querySelector('.ew-app-sub2');
+  if (ewApp2) ewApp2.textContent = t.eagleRightApp2;
+  
+  // Eagle body
+  safeUpdate('.eagle-body-label', t.eagleBodyLabel, true);
+  const eagleBodySubs = document.querySelectorAll('.eagle-body-sub');
+  if (eagleBodySubs[0]) eagleBodySubs[0].innerHTML = t.eagleBodySub2;
+  if (eagleBodySubs[1]) eagleBodySubs[1].innerHTML = t.eagleBodySub3;
+  
+  // Pillars
+  const pillarNums = document.querySelectorAll('.pillar-num');
+  if (pillarNums[0]) pillarNums[0].textContent = t.pillar1Num;
+  if (pillarNums[1]) pillarNums[1].textContent = t.pillar2Num;
+  if (pillarNums[2]) pillarNums[2].textContent = t.pillar3Num;
+  
+  const pillarRefs = document.querySelectorAll('.pillar-ref');
+  if (pillarRefs[0]) pillarRefs[0].textContent = t.pillar1;
+  if (pillarRefs[1]) pillarRefs[1].textContent = t.pillar2;
+  if (pillarRefs[2]) pillarRefs[2].textContent = t.pillar3;
+  
+  const pillarKeys = document.querySelectorAll('.pillar-keyword');
+  if (pillarKeys[0]) pillarKeys[0].innerHTML = t.pillar1Key;
+  if (pillarKeys[1]) pillarKeys[1].innerHTML = t.pillar2Key;
+  if (pillarKeys[2]) pillarKeys[2].innerHTML = t.pillar3Key;
+  
+  // === SECTION 5 - VISION MAP ===
+  if (chips[4]) chips[4].textContent = t.chip5;
+  const mapTitle = document.querySelector('.map-section .sec-title');
+  if (mapTitle) mapTitle.innerHTML = t.sec5Title;
+  if (secSubs[4]) secSubs[4].textContent = t.sec5Sub;
+  
+  const mapNodeTitles = document.querySelectorAll('.map-node-title');
+  if (mapNodeTitles[0]) mapNodeTitles[0].textContent = t.mapNode1Title;
+  if (mapNodeTitles[1]) mapNodeTitles[1].textContent = t.mapNode2Title;
+  if (mapNodeTitles[2]) mapNodeTitles[2].textContent = t.mapNode3Title;
+  
+  const mapNodeSubs = document.querySelectorAll('.map-node-sub');
+  if (mapNodeSubs[0]) mapNodeSubs[0].innerHTML = t.mapNode1Sub;
+  if (mapNodeSubs[1]) mapNodeSubs[1].innerHTML = t.mapNode2Sub;
+  if (mapNodeSubs[2]) mapNodeSubs[2].innerHTML = t.mapNode3Sub;
+  
+  const mapNodeRefs = document.querySelectorAll('.map-node-ref');
+  if (mapNodeRefs[0]) mapNodeRefs[0].textContent = t.mapNode1Ref;
+  if (mapNodeRefs[1]) mapNodeRefs[1].textContent = t.mapNode2Ref;
+  if (mapNodeRefs[2]) mapNodeRefs[2].textContent = t.mapNode3Ref;
+  
+  const mapArrowLabels = document.querySelectorAll('.map-arrow-label');
+  if (mapArrowLabels[0]) mapArrowLabels[0].textContent = t.mapArrow1;
+  if (mapArrowLabels[1]) mapArrowLabels[1].textContent = t.mapArrow2;
+  
+  // Map pillars - using style attribute divs
+  const mapPillars = document.querySelectorAll('.map-section .a5 > div');
+  if (mapPillars[0]) {
+    const title1 = mapPillars[0].querySelector('div:first-child');
+    const sub1 = mapPillars[0].querySelector('div:last-child');
+    if (title1) title1.textContent = t.mapPillar1Title;
+    if (sub1) sub1.innerHTML = t.mapPillar1Sub;
+  }
+  if (mapPillars[1]) {
+    const title2 = mapPillars[1].querySelector('div:first-child');
+    const sub2 = mapPillars[1].querySelector('div:last-child');
+    if (title2) title2.textContent = t.mapPillar2Title;
+    if (sub2) sub2.innerHTML = t.mapPillar2Sub;
+  }
+  if (mapPillars[2]) {
+    const title3 = mapPillars[2].querySelector('div:first-child');
+    const sub3 = mapPillars[2].querySelector('div:last-child');
+    if (title3) title3.textContent = t.mapPillar3Title;
+    if (sub3) sub3.innerHTML = t.mapPillar3Sub;
+  }
+  
+  // === CLOSING ===
+  safeUpdate('.closing-verse', t.closingVerse, true);
+  safeUpdate('.closing-verse-ref2', t.closingVerseRef);
+  safeUpdate('.closing-declaration', t.closingVision, true);
+  safeUpdate('.closing-en', t.closingEn, true);
+  safeUpdate('.closing-tagline', t.closingTag);
+  
+  const footerLines = document.querySelectorAll('.closing-footer');
+  if (footerLines[0]) {
+    footerLines[0].innerHTML = 
+      t.footerChurch + '<br>' +
+      t.footerRefs + '<br>' +
+      t.footerTag + '<br>' +
+      '<span style="font-size:11px;opacity:.6;">' + t.footerNote + '</span>';
+  }
+}
+
+// Helper function for safe updates
+function safeUpdate(selector, content, isHTML = false) {
+  const el = document.querySelector(selector);
+  if (el) {
+    if (isHTML) {
+      el.innerHTML = content;
+    } else {
+      el.textContent = content;
+    }
+  }
+}
+
+// === HOME BUTTON & SECTION LINKS ===
 document.addEventListener('DOMContentLoaded', function() {
   const homeBtn = document.getElementById('homeBtn');
   const sectionLinks = document.querySelectorAll('a[href^="#"]');
   
-  // 홈 버튼 - 스크롤 시 표시/숨김
   window.addEventListener('scroll', function() {
     if (window.pageYOffset > 300) {
       homeBtn.classList.add('visible');
@@ -1448,7 +2139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // 홈 버튼 클릭 - 맨 위로
   homeBtn.addEventListener('click', function() {
     window.scrollTo({
       top: 0,
@@ -1456,7 +2146,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // 섹션 링크 클릭 - 부드러운 스크롤
   sectionLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1465,7 +2154,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (targetSection) {
         const targetPosition = targetSection.offsetTop - 20;
-        
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
