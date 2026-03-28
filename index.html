@@ -37,6 +37,75 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 .a7{animation:fadeUp .8s 1s ease both;}
 
 /* ══════════════════════════════════════
+   HOME BUTTON (홈 버튼)
+══════════════════════════════════════ */
+.home-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9998;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--teal-m), var(--gold));
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.home-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.home-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+}
+
+.home-btn:active {
+  transform: translateY(-2px);
+}
+
+.home-btn-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.home-btn-text {
+  font-family: var(--serif);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .home-btn {
+    width: 56px;
+    height: 56px;
+    bottom: 24px;
+    right: 24px;
+  }
+  .home-btn-icon {
+    font-size: 22px;
+  }
+  .home-btn-text {
+    font-size: 9px;
+  }
+}
+
+/* ══════════════════════════════════════
    § 1  HERO
 ══════════════════════════════════════ */
 .hero {
@@ -198,7 +267,10 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   border:1px solid rgba(255,255,255,.12);
   padding:4px 13px;border-radius:20px;
   background:rgba(255,255,255,.04);
-  transition:.2s;cursor:default;
+  transition:.2s;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
 }
 .s-badge:hover {
   color:var(--gold-l);
@@ -939,11 +1011,11 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   </div>
 
   <div class="scripture-row a4">
-    <span class="s-badge">창 12:1~3 — 부르심</span>
-    <span class="s-badge">창 13:14~18 — 비전</span>
-    <span class="s-badge">사 40:31 — 독수리</span>
-    <span class="s-badge">마 22:37~39 — 이중계명</span>
-    <span class="s-badge">마 28:18~20 — 대위임령 · 침례</span>
+    <a href="#calling" class="s-badge">창 12:1~3 — 부르심</a>
+    <a href="#commandments" class="s-badge">마 22:37~39 — 이중계명</a>
+    <a href="#commission" class="s-badge">마 28:18~20 — 대위임령 · 침례</a>
+    <a href="#eagle" class="s-badge">사 40:31 — 독수리</a>
+    <a href="#vision-map" class="s-badge">창 13:14~18 — 비전 지도</a>
   </div>
 
   <div class="scroll-cue">
@@ -957,7 +1029,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <!-- ══════════════════════════════════════
      § 2  CALLING — 하나님이 먼저 부르셨다
 ══════════════════════════════════════ -->
-<div class="section">
+<div class="section" id="calling">
   <div class="chip chip-teal a1">Biblical Foundation · 성경적 근거</div>
   <h2 class="sec-title a2">하나님이 <em>먼저</em> 부르셨습니다</h2>
   <p class="sec-sub a3">
@@ -1029,7 +1101,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <!-- ══════════════════════════════════════
      § 3  CROSS — 십자가 구조
 ══════════════════════════════════════ -->
-<div class="cross-section">
+<div class="cross-section" id="commandments">
   <div class="cross-inner">
     <div style="text-align:center;">
       <div class="chip chip-navy a1" style="margin-bottom:16px;">The Cross Structure · 십자가 구조</div>
@@ -1097,7 +1169,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <!-- ══════════════════════════════════════
      § 4  THREE VERBS — 세 동사
 ══════════════════════════════════════ -->
-<div class="verbs-section">
+<div class="verbs-section" id="commission">
   <div class="verbs-inner">
     <div class="chip chip-teal a1">Three Verbs · 세 동사</div>
     <h2 class="sec-title a2">찾아, <em>만들어,</em> 파송한다</h2>
@@ -1155,7 +1227,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <!-- ══════════════════════════════════════
      § 5  EAGLE — 독수리 두 날개
 ══════════════════════════════════════ -->
-<div class="wings-section">
+<div class="wings-section" id="eagle">
   <div class="wings-inner">
     <div class="chip chip-gold a1">Two Wings of an Eagle · 독수리의 두 날개</div>
     <h2 class="sec-title a2">독수리처럼 <em>날아오릅니다</em></h2>
@@ -1256,7 +1328,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 <!-- ══════════════════════════════════════
      § 6  VISION MAP
 ══════════════════════════════════════ -->
-<div class="map-section">
+<div class="map-section" id="vision-map">
   <div class="map-inner">
     <div style="text-align:center;">
       <div class="chip chip-navy a1" style="margin-bottom:16px;">Vision Map · 비전 지도</div>
@@ -1352,6 +1424,57 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     HOME BUTTON (홈 버튼)
+══════════════════════════════════════ -->
+<button class="home-btn" id="homeBtn" aria-label="맨 위로">
+  <span class="home-btn-icon">🏠</span>
+  <span class="home-btn-text">HOME</span>
+</button>
+
+<script>
+// 홈 버튼 및 섹션 링크 기능
+document.addEventListener('DOMContentLoaded', function() {
+  const homeBtn = document.getElementById('homeBtn');
+  const sectionLinks = document.querySelectorAll('a[href^="#"]');
+  
+  // 홈 버튼 - 스크롤 시 표시/숨김
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      homeBtn.classList.add('visible');
+    } else {
+      homeBtn.classList.remove('visible');
+    }
+  });
+  
+  // 홈 버튼 클릭 - 맨 위로
+  homeBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // 섹션 링크 클릭 - 부드러운 스크롤
+  sectionLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        const targetPosition = targetSection.offsetTop - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
