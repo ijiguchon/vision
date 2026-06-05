@@ -567,6 +567,56 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   color:rgba(255,255,255,.45);
 }
 
+/* ═══════ 모바일 대응 ═══════ */
+@media (max-width: 640px) {
+  .cross-diagram {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  /* 라인 숨기기 */
+  .cross-line-v,
+  .cross-line-h {
+    display: none;
+  }
+  
+  /* 모든 카드를 세로 배치 */
+  .cross-card {
+    position: static;
+    transform: none;
+    width: 100% !important;
+    height: auto !important;
+    padding: 20px !important;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  
+  .cross-card.left,
+  .cross-card.right {
+    text-align: center;
+    align-items: center;
+  }
+  
+  /* 중심 노드 */
+  .cross-center-node {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+  
+  /* 순서 조정 */
+  .cross-card.top { order: 1; }
+  .cross-card.left { order: 2; }
+  .cross-center-node { order: 3; }
+  .cross-card.right { order: 4; }
+  .cross-card.bottom { order: 5; }
+}
+
 /* ══════════════════════════════════════
    § 4  THREE VERBS — 세 동사
 ══════════════════════════════════════ */
@@ -1393,25 +1443,13 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
       <div class="chip chip-navy a1" style="margin-bottom:16px;">Vision Map · 비전 지도</div>
       <h2 class="sec-title a2" style="color:var(--white);">시애틀에서 <em style="color:var(--teal-m);">지구촌 땅 끝까지</em></h2>
       <p class="sec-sub a3" style="color:rgba(255,255,255,.5);margin:0 auto 0;">
-        "너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀이 출발점입니다. "지구촌(Global Mission)"이 목적지입니다.
+        "너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회(목장)를 세우며, 그 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.
       </p>
     </div>
 
     <div class="map-flow a4">
 
       <div class="map-node n1">
-        <div class="map-node-icon">🏠</div>
-        <div class="map-node-title">Hebron(가정)</div>
-        <div class="map-node-sub">한 가정, 한 이웃<br>One Home at a Time</div>
-        <div class="map-node-ref">창 13:18 · 목장 · 가정+교회</div>
-      </div>
-
-      <div class="map-arrow">
-        <div class="map-arrow-icon">→</div>
-        <div class="map-arrow-label">확장</div>
-      </div>
-
-      <div class="map-node n2">
         <div class="map-node-icon">🌆</div>
         <div class="map-node-title">시애틀</div>
         <div class="map-node-sub">동서남북<br>이 도시를 바라보라</div>
@@ -1420,30 +1458,45 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 
       <div class="map-arrow">
         <div class="map-arrow-icon">→</div>
-        <div class="map-arrow-label">파송</div>
+        <div class="map-arrow-label">세움</div>
+      </div>
+
+      <div class="map-node n2">
+        <div class="map-node-icon">🏠</div>
+        <div class="map-node-title">가정교회(목장)</div>
+        <div class="map-node-sub">집에서 모이는 교회<br>The Church at Home</div>
+        <div class="map-node-ref">창 13:18 · 행 2:46 · 분가로 재생산</div>
+      </div>
+
+      <div class="map-arrow">
+        <div class="map-arrow-icon">→</div>
+        <div class="map-arrow-label">분가</div>
       </div>
 
       <div class="map-node n3">
         <div class="map-node-icon">🌍</div>
         <div class="map-node-title">지구촌 땅 끝</div>
-        <div class="map-node-sub">모든 민족에게<br>하나님 나라 확장</div>
+        <div class="map-node-sub">가정교회의 분가로<br>확장되는 하나님 나라</div>
         <div class="map-node-ref">마 28:19 · Global Mission</div>
       </div>
 
     </div>
 
     <div style="margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:700px;margin-left:auto;margin-right:auto;" class="a5">
-      <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목장</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">삶을 나누는<br>선교 공동체</div>
+      <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid var(--gold-l);">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 1 · 시애틀</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">주일연합예배</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">함께 모여<br>주님을 예배하는 공동체</div>
       </div>
-      <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">삶공부</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">제자를 만들어 가는<br>훈련 공동체</div>
+      <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid var(--teal-m);">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 2 · 가정교회(목장)</div>
+        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목장 · 삶공부</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">삶을 나누며 제자를<br>세우는 선교적 가정교회</div>
       </div>
-      <div style="background:rgba(255,255,255,.05);padding:16px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:#7ec8f5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목자</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">파송 받은<br>평신도 선교사</div>
+      <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid #7ec8f5;">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 3 · 지구촌 땅 끝</div>
+        <div style="font-size:11px;font-weight:700;color:#7ec8f5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">파송 · 선교</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">가정교회가 분가하며<br>땅 끝으로 재생산되는 선교 공동체</div>
       </div>
     </div>
   </div>
@@ -1632,29 +1685,32 @@ const translations = {
     // === 비전 지도 섹션 ===
     chip5: 'Vision Map · 비전 지도',
     sec5Title: '시애틀에서 <em style="color:var(--teal-m);">지구촌 땅 끝까지</em>',
-    sec5Sub: '"너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀이 출발점입니다. "지구촌(Global Mission)"이 목적지입니다.',
+    sec5Sub: '"너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회(목장)를 세우며, 그 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.',
     
-    mapNode1Title: 'Hebron(가정)',
-    mapNode1Sub: '한 가정, 한 이웃<br>One Home at a Time',
-    mapNode1Ref: '창 13:18 · 목장 · 가정+교회',
+    mapNode1Title: '시애틀',
+    mapNode1Sub: '동서남북<br>이 도시를 바라보라',
+    mapNode1Ref: '창 13:14 · GMC(연합교회)',
     
-    mapNode2Title: '시애틀',
-    mapNode2Sub: '동서남북<br>이 도시를 바라보라',
-    mapNode2Ref: '창 13:14 · GMC(연합교회)',
+    mapNode2Title: '가정교회(목장)',
+    mapNode2Sub: '집에서 모이는 교회<br>The Church at Home',
+    mapNode2Ref: '창 13:18 · 행 2:46 · 분가로 재생산',
     
     mapNode3Title: '지구촌 땅 끝',
-    mapNode3Sub: '모든 민족에게<br>하나님 나라 확장',
+    mapNode3Sub: '가정교회의 분가로<br>확장되는 하나님 나라',
     mapNode3Ref: '마 28:19 · Global Mission',
     
-    mapArrow1: '확장',
-    mapArrow2: '파송',
+    mapArrow1: '세움',
+    mapArrow2: '분가',
     
-    mapPillar1Title: '목장',
-    mapPillar1Sub: '삶을 나누는<br>선교 공동체',
-    mapPillar2Title: '삶공부',
-    mapPillar2Sub: '제자를 만들어 가는<br>훈련 공동체',
-    mapPillar3Title: '목자',
-    mapPillar3Sub: '파송 받은<br>평신도 선교사',
+    mapPillar1Step: 'STEP 1 · 시애틀',
+    mapPillar1Title: '주일연합예배',
+    mapPillar1Sub: '함께 모여<br>주님을 예배하는 공동체',
+    mapPillar2Step: 'STEP 2 · 가정교회(목장)',
+    mapPillar2Title: '목장 · 삶공부',
+    mapPillar2Sub: '삶을 나누며 제자를<br>세우는 선교적 가정교회',
+    mapPillar3Step: 'STEP 3 · 지구촌 땅 끝',
+    mapPillar3Title: '파송 · 선교',
+    mapPillar3Sub: '가정교회가 분가하며<br>땅 끝으로 재생산되는 선교 공동체',
     
     // === 클로징 ===
     closingVerse: '"보아라, 내가 세상 끝날까지<br>항상 너희와 함께 있겠다."',
@@ -1806,29 +1862,32 @@ const translations = {
     // === VISION MAP SECTION ===
     chip5: 'Vision Map',
     sec5Title: 'From Seattle to <em style="color:var(--teal-m);">the Ends of the Earth</em>',
-    sec5Sub: '"Look from where you are, to the north and south, to the east and west" (Gen 13:14) — Seattle is the starting point. "Global Mission" is the destination.',
+    sec5Sub: '"Look from where you are, to the north and south, to the east and west" (Gen 13:14) — Receive the vision in Seattle, establish house churches (Mokjang), and through their multiplication God\'s Kingdom expands to the ends of the earth.',
     
-    mapNode1Title: 'Hebron (Home)',
-    mapNode1Sub: 'One Home, One Neighbor<br>at a Time',
-    mapNode1Ref: 'Gen 13:18 · Mokjang · House+Church',
+    mapNode1Title: 'Seattle',
+    mapNode1Sub: 'North, South, East, West<br>Look at This City',
+    mapNode1Ref: 'Gen 13:14 · GMC(United Church)',
     
-    mapNode2Title: 'Seattle',
-    mapNode2Sub: 'North, South, East, West<br>Look at This City',
-    mapNode2Ref: 'Gen 13:14 · GMC(United Church)',
+    mapNode2Title: 'House Church (Mokjang)',
+    mapNode2Sub: 'The Church at Home<br>God\'s First Family',
+    mapNode2Ref: 'Gen 13:18 · Acts 2:46 · Multiplying House Churches',
     
     mapNode3Title: 'Ends of the Earth',
-    mapNode3Sub: 'To All Nations<br>Expanding God\'s Kingdom',
+    mapNode3Sub: 'God\'s Kingdom Expanding<br>as House Churches Multiply',
     mapNode3Ref: 'Matt 28:19 · Global Mission',
     
-    mapArrow1: 'Expand',
-    mapArrow2: 'Send',
+    mapArrow1: 'Establish',
+    mapArrow2: 'Multiply',
     
-    mapPillar1Title: 'Mokjang',
-    mapPillar1Sub: 'Missional Community<br>Sharing Life',
-    mapPillar2Title: 'Life Study',
-    mapPillar2Sub: 'Discipleship<br>Training Community',
-    mapPillar3Title: 'Shepherd',
-    mapPillar3Sub: 'Sent-Out<br>Lay Missionary',
+    mapPillar1Step: 'STEP 1 · Seattle',
+    mapPillar1Title: 'Sunday Worship',
+    mapPillar1Sub: 'A Community Gathered<br>to Worship the Lord',
+    mapPillar2Step: 'STEP 2 · House Church',
+    mapPillar2Title: 'Mokjang · Life Study',
+    mapPillar2Sub: 'A Missional House Church<br>Sharing Life, Making Disciples',
+    mapPillar3Step: 'STEP 3 · Ends of the Earth',
+    mapPillar3Title: 'Sending · Mission',
+    mapPillar3Sub: 'Missionaries Scattered<br>as House Churches Multiply',
     
     // === CLOSING ===
     closingVerse: '"And surely I am with you always,<br>to the very end of the age."',
@@ -2076,26 +2135,17 @@ function updatePageText(lang) {
   if (mapArrowLabels[0]) mapArrowLabels[0].textContent = t.mapArrow1;
   if (mapArrowLabels[1]) mapArrowLabels[1].textContent = t.mapArrow2;
   
-  // Map pillars - using style attribute divs
+  // Map pillars - 3 divs each: step label / title / sub
   const mapPillars = document.querySelectorAll('.map-section .a5 > div');
-  if (mapPillars[0]) {
-    const title1 = mapPillars[0].querySelector('div:first-child');
-    const sub1 = mapPillars[0].querySelector('div:last-child');
-    if (title1) title1.textContent = t.mapPillar1Title;
-    if (sub1) sub1.innerHTML = t.mapPillar1Sub;
-  }
-  if (mapPillars[1]) {
-    const title2 = mapPillars[1].querySelector('div:first-child');
-    const sub2 = mapPillars[1].querySelector('div:last-child');
-    if (title2) title2.textContent = t.mapPillar2Title;
-    if (sub2) sub2.innerHTML = t.mapPillar2Sub;
-  }
-  if (mapPillars[2]) {
-    const title3 = mapPillars[2].querySelector('div:first-child');
-    const sub3 = mapPillars[2].querySelector('div:last-child');
-    if (title3) title3.textContent = t.mapPillar3Title;
-    if (sub3) sub3.innerHTML = t.mapPillar3Sub;
-  }
+  const pillarSteps = [t.mapPillar1Step, t.mapPillar2Step, t.mapPillar3Step];
+  const pillarTitles = [t.mapPillar1Title, t.mapPillar2Title, t.mapPillar3Title];
+  const pillarSubs = [t.mapPillar1Sub, t.mapPillar2Sub, t.mapPillar3Sub];
+  mapPillars.forEach((pillar, i) => {
+    const divs = pillar.querySelectorAll(':scope > div');
+    if (divs[0] && pillarSteps[i]) divs[0].textContent = pillarSteps[i];
+    if (divs[1] && pillarTitles[i]) divs[1].textContent = pillarTitles[i];
+    if (divs[2] && pillarSubs[i]) divs[2].innerHTML = pillarSubs[i];
+  });
   
   // === CLOSING ===
   safeUpdate('.closing-verse', t.closingVerse, true);
