@@ -957,6 +957,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
   .map-arrow{transform:rotate(90deg);}
   .hebron-grid{grid-template-columns:repeat(2,1fr)!important;}
   .step-grid{grid-template-columns:1fr!important;}
+  .axes-grid{grid-template-columns:1fr!important;}
 }
 
 .map-node {
@@ -1445,7 +1446,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
       <div class="chip chip-navy a1" style="margin-bottom:16px;">Vision Map · 비전 지도</div>
       <h2 class="sec-title a2" style="color:var(--white);">시애틀에서 <em style="color:var(--teal-m);">지구촌 땅 끝까지</em></h2>
       <p class="sec-sub a3" style="color:rgba(255,255,255,.5);margin:0 auto 0;">
-        "너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회(목장)를 세우며, 그 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.
+        "너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회를 세우며, 그 목장의 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.
       </p>
     </div>
 
@@ -1465,8 +1466,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 
       <div class="map-node n2">
         <div class="map-node-icon">🏠</div>
-        <div class="map-node-title">가정교회(목장)</div>
-        <div class="map-node-sub">집에서 모이는 교회<br>The Church at Home</div>
+        <div class="map-node-title">가정교회</div>
+        <div class="map-node-sub">세 축으로 세우는 교회<br>주일연합예배 · 삶공부 · 목장</div>
         <div class="map-node-ref">창 13:18 · 행 2:46 · 분가로 재생산</div>
       </div>
 
@@ -1484,58 +1485,84 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 
     </div>
 
+    <!-- 가정교회의 세 축 -->
+    <div style="margin-top:44px;max-width:860px;margin-left:auto;margin-right:auto;" class="a5" id="three-axes">
+      <div class="ax-eyebrow" style="text-align:center;font-size:12px;font-weight:700;color:var(--gold-l);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">가정교회의 세 축</div>
+      <p class="ax-intro" style="text-align:center;font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin:0 auto 22px;max-width:680px;">
+        우리가 말하는 "가정교회"는 단순한 소그룹이 아니라, 세 축이 하나로 맞물린 교회입니다. 주일에 함께 예배하고(연합), 말씀으로 제자가 되며(훈련), 가정에서 작은 교회로 모입니다(목장).
+      </p>
+      <div class="axes-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div style="background:rgba(212,175,55,.07);border:1px solid rgba(240,223,160,.2);border-radius:12px;padding:20px 16px;text-align:center;">
+          <div style="font-size:24px;margin-bottom:10px;">🙌</div>
+          <div class="ax-card-t" style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;">주일연합예배</div>
+          <div class="ax-card-d" style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">목장들이 함께 모여 드리는 연합 예배 — 한 몸 된 교회</div>
+        </div>
+        <div style="background:rgba(212,175,55,.07);border:1px solid rgba(240,223,160,.2);border-radius:12px;padding:20px 16px;text-align:center;">
+          <div style="font-size:24px;margin-bottom:10px;">📖</div>
+          <div class="ax-card-t" style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;">삶공부</div>
+          <div class="ax-card-d" style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">삶 시리즈 성경공부로 제자를 세우는 훈련</div>
+        </div>
+        <div style="background:rgba(212,175,55,.07);border:1px solid rgba(240,223,160,.2);border-radius:12px;padding:20px 16px;text-align:center;">
+          <div style="font-size:24px;margin-bottom:10px;">🏠</div>
+          <div class="ax-card-t" style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;">목장</div>
+          <div class="ax-card-d" style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">가정에서 모이는 작은 교회 — 삶을 나누고 분가로 번식</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 헤브론의 네 겹 의미 -->
     <div style="margin-top:44px;max-width:860px;margin-left:auto;margin-right:auto;" class="a5" id="hebron-theology">
-      <div style="text-align:center;font-size:12px;font-weight:700;color:var(--teal-m);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">왜 Hebron(가정교회)인가</div>
-      <p style="text-align:center;font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin:0 auto 22px;max-width:680px;">
+      <div class="hb-eyebrow" style="text-align:center;font-size:12px;font-weight:700;color:var(--teal-m);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">왜 Hebron(가정교회)인가</div>
+      <p class="hb-intro" style="text-align:center;font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin:0 auto 22px;max-width:680px;">
         헤브론은 아브라함이 제단을 쌓은 첫 정착지이자(창 13:18), 같은 자리에서 나그네를 환대하고(창 18:1~8) 자손에게 주의 길을 가르친 곳입니다(창 18:19). 한 가정이 곧 교회가 되어, 예배·환대·제자훈련이 한 자리에서 일어납니다.
       </p>
       <div class="hebron-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
         <div style="background:rgba(26,138,98,.08);border:1px solid rgba(36,184,130,.18);border-radius:10px;padding:16px 12px;text-align:center;">
           <div style="font-size:22px;margin-bottom:8px;">⛰️</div>
-          <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">첫 정착지</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">아브라함이 제단을 쌓은 자리</div>
-          <div style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 13:18</div>
+          <div class="hb-card-t" style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">첫 정착지</div>
+          <div class="hb-card-d" style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">아브라함이 제단을 쌓은 자리</div>
+          <div class="hb-card-r" style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 13:18</div>
         </div>
         <div style="background:rgba(26,138,98,.08);border:1px solid rgba(36,184,130,.18);border-radius:10px;padding:16px 12px;text-align:center;">
           <div style="font-size:22px;margin-bottom:8px;">🔥</div>
-          <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">가정 제단</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">매일 하나님께 예배하는 가정</div>
-          <div style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">수직 · 하나님 사랑</div>
+          <div class="hb-card-t" style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">가정 제단</div>
+          <div class="hb-card-d" style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">매일 하나님께 예배하는 가정</div>
+          <div class="hb-card-r" style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">수직 · 하나님 사랑</div>
         </div>
-        <div style="background:rgba(26,138,98,.08);border:1px solid rgba(36,184,130,.18);border-radius:10px;padding:16px 12px;text-align:center;">
+        <div style="background:rgba(26,138,98,.12);border:1px solid rgba(36,184,130,.35);border-radius:10px;padding:16px 12px;text-align:center;">
           <div style="font-size:22px;margin-bottom:8px;">🤝</div>
-          <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">환대</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">나그네를 영접하며 선교가 시작됨</div>
-          <div style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 18:1~8</div>
+          <div class="hb-card-t" style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">환대</div>
+          <div class="hb-card-d" style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">나그네를 영접하며 선교가 시작됨</div>
+          <div class="hb-card-r" style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 18:1~8</div>
+          <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:700;color:var(--gold-l);text-decoration:none;border:1px solid rgba(240,223,160,.35);border-radius:14px;padding:4px 10px;transition:all .25s ease;" onmouseover="this.style.background='rgba(240,223,160,.12)';" onmouseout="this.style.background='transparent';">→ HebronGuide</a>
         </div>
         <div style="background:rgba(26,138,98,.08);border:1px solid rgba(36,184,130,.18);border-radius:10px;padding:16px 12px;text-align:center;">
           <div style="font-size:22px;margin-bottom:8px;">🌱</div>
-          <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">제자훈련 · 전수</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">자손에게 주의 길을 가르침</div>
-          <div style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 18:19</div>
+          <div class="hb-card-t" style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">제자훈련 · 전수</div>
+          <div class="hb-card-d" style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;">자손에게 주의 길을 가르침</div>
+          <div class="hb-card-r" style="font-size:10px;color:var(--teal-m);margin-top:6px;letter-spacing:.05em;">창 18:19</div>
         </div>
       </div>
-      <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;margin:18px auto 0;max-width:680px;font-style:italic;">
+      <p class="hb-closing" style="text-align:center;font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;margin:18px auto 0;max-width:680px;font-style:italic;">
         제단을 쌓고(예배) · 나그네를 환대하며(선교) · 다음 세대를 세운다(제자훈련) — 이것이 신약 가정교회의 원형이며, 오늘 우리 목장의 부르심입니다.
       </p>
     </div>
 
     <div class="step-grid a6" style="margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:700px;margin-left:auto;margin-right:auto;">
       <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid var(--gold-l);">
-        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 1 · 시애틀</div>
-        <div style="font-size:11px;font-weight:700;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">주일연합예배</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">함께 모여<br>주님을 예배하는 공동체</div>
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 1 · 비전</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">시애틀</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">이 도시를 바라보며<br>비전을 받는다</div>
       </div>
       <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid var(--teal-m);">
-        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 2 · 가정교회(목장)</div>
-        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">목장 · 삶공부</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">삶을 나누며 제자를<br>세우는 선교적 가정교회</div>
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 2 · 세움</div>
+        <div style="font-size:11px;font-weight:700;color:var(--teal-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">가정교회</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">세 축으로 세우고<br>제자를 길러내는 교회</div>
       </div>
       <div style="background:rgba(255,255,255,.05);padding:18px 16px;text-align:center;border-top:2px solid #7ec8f5;">
-        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 3 · 지구촌 땅 끝</div>
-        <div style="font-size:11px;font-weight:700;color:#7ec8f5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">파송 · 선교</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">가정교회가 분가하며<br>땅 끝으로 재생산되는 선교 공동체</div>
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.15em;margin-bottom:8px;">STEP 3 · 분가</div>
+        <div style="font-size:11px;font-weight:700;color:#7ec8f5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">지구촌 땅 끝</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">가정교회가 분가하며<br>땅 끝으로 재생산된다</div>
       </div>
     </div>
   </div>
@@ -1724,14 +1751,14 @@ const translations = {
     // === 비전 지도 섹션 ===
     chip5: 'Vision Map · 비전 지도',
     sec5Title: '시애틀에서 <em style="color:var(--teal-m);">지구촌 땅 끝까지</em>',
-    sec5Sub: '"너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회(목장)를 세우며, 그 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.',
+    sec5Sub: '"너 있는 곳에서 동서남북을 바라보라" (창 13:14) — 시애틀에서 비전을 받고, 가정교회를 세우며, 그 목장의 분가로 지구촌 땅 끝까지 하나님 나라가 확장됩니다.',
     
     mapNode1Title: '시애틀',
     mapNode1Sub: '동서남북<br>이 도시를 바라보라',
     mapNode1Ref: '창 13:14 · GMC(연합교회)',
     
-    mapNode2Title: '가정교회(목장)',
-    mapNode2Sub: '집에서 모이는 교회<br>The Church at Home',
+    mapNode2Title: '가정교회',
+    mapNode2Sub: '세 축으로 세우는 교회<br>주일연합예배 · 삶공부 · 목장',
     mapNode2Ref: '창 13:18 · 행 2:46 · 분가로 재생산',
     
     mapNode3Title: '지구촌 땅 끝',
@@ -1741,15 +1768,29 @@ const translations = {
     mapArrow1: '세움',
     mapArrow2: '분가',
     
-    mapPillar1Step: 'STEP 1 · 시애틀',
-    mapPillar1Title: '주일연합예배',
-    mapPillar1Sub: '함께 모여<br>주님을 예배하는 공동체',
-    mapPillar2Step: 'STEP 2 · 가정교회(목장)',
-    mapPillar2Title: '목장 · 삶공부',
-    mapPillar2Sub: '삶을 나누며 제자를<br>세우는 선교적 가정교회',
-    mapPillar3Step: 'STEP 3 · 지구촌 땅 끝',
-    mapPillar3Title: '파송 · 선교',
-    mapPillar3Sub: '가정교회가 분가하며<br>땅 끝으로 재생산되는 선교 공동체',
+    mapPillar1Step: 'STEP 1 · 비전',
+    mapPillar1Title: '시애틀',
+    mapPillar1Sub: '이 도시를 바라보며<br>비전을 받는다',
+    mapPillar2Step: 'STEP 2 · 세움',
+    mapPillar2Title: '가정교회',
+    mapPillar2Sub: '세 축으로 세우고<br>제자를 길러내는 교회',
+    mapPillar3Step: 'STEP 3 · 분가',
+    mapPillar3Title: '지구촌 땅 끝',
+    mapPillar3Sub: '가정교회가 분가하며<br>땅 끝으로 재생산된다',
+    
+    axEyebrow: '가정교회의 세 축',
+    axIntro: '우리가 말하는 "가정교회"는 단순한 소그룹이 아니라, 세 축이 하나로 맞물린 교회입니다. 주일에 함께 예배하고(연합), 말씀으로 제자가 되며(훈련), 가정에서 작은 교회로 모입니다(목장).',
+    axCard1Title: '주일연합예배', axCard1Desc: '목장들이 함께 모여 드리는 연합 예배 — 한 몸 된 교회',
+    axCard2Title: '삶공부', axCard2Desc: '삶 시리즈 성경공부로 제자를 세우는 훈련',
+    axCard3Title: '목장', axCard3Desc: '가정에서 모이는 작은 교회 — 삶을 나누고 분가로 번식',
+    
+    hbEyebrow: '왜 Hebron(가정교회)인가',
+    hbIntro: '헤브론은 아브라함이 제단을 쌓은 첫 정착지이자(창 13:18), 같은 자리에서 나그네를 환대하고(창 18:1~8) 자손에게 주의 길을 가르친 곳입니다(창 18:19). 한 가정이 곧 교회가 되어, 예배·환대·제자훈련이 한 자리에서 일어납니다.',
+    hbCard1Title: '첫 정착지', hbCard1Desc: '아브라함이 제단을 쌓은 자리', hbCard1Ref: '창 13:18',
+    hbCard2Title: '가정 제단', hbCard2Desc: '매일 하나님께 예배하는 가정', hbCard2Ref: '수직 · 하나님 사랑',
+    hbCard3Title: '환대', hbCard3Desc: '나그네를 영접하며 선교가 시작됨', hbCard3Ref: '창 18:1~8',
+    hbCard4Title: '제자훈련 · 전수', hbCard4Desc: '자손에게 주의 길을 가르침', hbCard4Ref: '창 18:19',
+    hbClosing: '제단을 쌓고(예배) · 나그네를 환대하며(선교) · 다음 세대를 세운다(제자훈련) — 이것이 신약 가정교회의 원형이며, 오늘 우리 목장의 부르심입니다.',
     
     // === 클로징 ===
     closingVerse: '"보아라, 내가 세상 끝날까지<br>항상 너희와 함께 있겠다."',
@@ -1901,14 +1942,14 @@ const translations = {
     // === VISION MAP SECTION ===
     chip5: 'Vision Map',
     sec5Title: 'From Seattle to <em style="color:var(--teal-m);">the Ends of the Earth</em>',
-    sec5Sub: '"Look from where you are, to the north and south, to the east and west" (Gen 13:14) — Receive the vision in Seattle, establish house churches (Mokjang), and through their multiplication God\'s Kingdom expands to the ends of the earth.',
+    sec5Sub: '"Look from where you are, to the north and south, to the east and west" (Gen 13:14) — Receive the vision in Seattle, establish the house church, and through the multiplication of its Mokjangs God\'s Kingdom expands to the ends of the earth.',
     
     mapNode1Title: 'Seattle',
     mapNode1Sub: 'North, South, East, West<br>Look at This City',
     mapNode1Ref: 'Gen 13:14 · GMC(United Church)',
     
-    mapNode2Title: 'House Church (Mokjang)',
-    mapNode2Sub: 'The Church at Home<br>God\'s First Family',
+    mapNode2Title: 'House Church',
+    mapNode2Sub: 'A Church Built on Three Axes<br>Sunday Worship · Life Study · Mokjang',
     mapNode2Ref: 'Gen 13:18 · Acts 2:46 · Multiplying House Churches',
     
     mapNode3Title: 'Ends of the Earth',
@@ -1918,15 +1959,29 @@ const translations = {
     mapArrow1: 'Establish',
     mapArrow2: 'Multiply',
     
-    mapPillar1Step: 'STEP 1 · Seattle',
-    mapPillar1Title: 'Sunday Worship',
-    mapPillar1Sub: 'A Community Gathered<br>to Worship the Lord',
-    mapPillar2Step: 'STEP 2 · House Church',
-    mapPillar2Title: 'Mokjang · Life Study',
-    mapPillar2Sub: 'A Missional House Church<br>Sharing Life, Making Disciples',
-    mapPillar3Step: 'STEP 3 · Ends of the Earth',
-    mapPillar3Title: 'Sending · Mission',
-    mapPillar3Sub: 'Missionaries Scattered<br>as House Churches Multiply',
+    mapPillar1Step: 'STEP 1 · Vision',
+    mapPillar1Title: 'Seattle',
+    mapPillar1Sub: 'Look upon this city<br>and receive the vision',
+    mapPillar2Step: 'STEP 2 · Establish',
+    mapPillar2Title: 'House Church',
+    mapPillar2Sub: 'Built on three axes,<br>raising disciples',
+    mapPillar3Step: 'STEP 3 · Multiply',
+    mapPillar3Title: 'Ends of the Earth',
+    mapPillar3Sub: 'House churches multiply<br>and reproduce to the ends of the earth',
+    
+    axEyebrow: 'The Three Axes of the House Church',
+    axIntro: 'The "house church" we speak of is not merely a small group, but a church where three axes work as one: gathering for worship on Sunday (united), becoming disciples through the Word (training), and meeting as a small church in homes (Mokjang).',
+    axCard1Title: 'Sunday Worship', axCard1Desc: 'United worship of all Mokjangs gathered together — one body',
+    axCard2Title: 'Life Study', axCard2Desc: 'Discipleship training through the Life Series Bible study',
+    axCard3Title: 'Mokjang', axCard3Desc: 'A small church meeting in homes — sharing life, multiplying through division',
+    
+    hbEyebrow: 'Why Hebron (House Church)',
+    hbIntro: 'Hebron was the first settlement where Abraham built an altar (Gen 13:18), and the very place where he welcomed strangers (Gen 18:1-8) and taught his children the way of the Lord (Gen 18:19). A home becomes a church—worship, hospitality, and discipleship all happen in one place.',
+    hbCard1Title: 'First Settlement', hbCard1Desc: 'Where Abraham built an altar', hbCard1Ref: 'Gen 13:18',
+    hbCard2Title: 'Family Altar', hbCard2Desc: 'A home worshiping God daily', hbCard2Ref: 'Vertical · Love for God',
+    hbCard3Title: 'Hospitality', hbCard3Desc: 'Welcoming strangers, mission begins', hbCard3Ref: 'Gen 18:1-8',
+    hbCard4Title: 'Discipleship · Legacy', hbCard4Desc: 'Teaching children the way of the Lord', hbCard4Ref: 'Gen 18:19',
+    hbClosing: 'Building an altar (worship) · Welcoming strangers (mission) · Raising the next generation (discipleship) — this is the prototype of the New Testament house church, and the calling of our Mokjang today.',
     
     // === CLOSING ===
     closingVerse: '"And surely I am with you always,<br>to the very end of the age."',
@@ -2185,6 +2240,30 @@ function updatePageText(lang) {
     if (divs[1] && pillarTitles[i]) divs[1].textContent = pillarTitles[i];
     if (divs[2] && pillarSubs[i]) divs[2].innerHTML = pillarSubs[i];
   });
+  
+  // === THREE AXES ===
+  safeUpdate('.ax-eyebrow', t.axEyebrow);
+  safeUpdate('.ax-intro', t.axIntro);
+  const axT = document.querySelectorAll('.ax-card-t');
+  const axD = document.querySelectorAll('.ax-card-d');
+  const axTitles = [t.axCard1Title, t.axCard2Title, t.axCard3Title];
+  const axDescs = [t.axCard1Desc, t.axCard2Desc, t.axCard3Desc];
+  axT.forEach((el, i) => { if (axTitles[i]) el.textContent = axTitles[i]; });
+  axD.forEach((el, i) => { if (axDescs[i]) el.textContent = axDescs[i]; });
+  
+  // === HEBRON THEOLOGY ===
+  safeUpdate('.hb-eyebrow', t.hbEyebrow);
+  safeUpdate('.hb-intro', t.hbIntro);
+  safeUpdate('.hb-closing', t.hbClosing);
+  const hbT = document.querySelectorAll('.hb-card-t');
+  const hbD = document.querySelectorAll('.hb-card-d');
+  const hbR = document.querySelectorAll('.hb-card-r');
+  const hbTitles = [t.hbCard1Title, t.hbCard2Title, t.hbCard3Title, t.hbCard4Title];
+  const hbDescs = [t.hbCard1Desc, t.hbCard2Desc, t.hbCard3Desc, t.hbCard4Desc];
+  const hbRefs = [t.hbCard1Ref, t.hbCard2Ref, t.hbCard3Ref, t.hbCard4Ref];
+  hbT.forEach((el, i) => { if (hbTitles[i]) el.textContent = hbTitles[i]; });
+  hbD.forEach((el, i) => { if (hbDescs[i]) el.textContent = hbDescs[i]; });
+  hbR.forEach((el, i) => { if (hbRefs[i]) el.textContent = hbRefs[i]; });
   
   // === CLOSING ===
   safeUpdate('.closing-verse', t.closingVerse, true);
